@@ -1,0 +1,39 @@
+// Coin Change Dynamic Problem
+// Recursive technique
+// How many ways to make M using N coins for unlimited times
+#include <cstdio>
+#include <cstring>
+using namespace std;
+#define memo(a,b) memset(a,b,sizeof(a))
+int arr[100+10];
+long long dp[100+10][10000+10];
+long long solve(int index,int amount)
+{
+    if(amount==0) return 1;
+    if(index==0)
+    {
+        if(amount==0) return 1;
+        else return 0;
+    }
+    if(dp[index][amount]!=-1) return dp[index][amount];
+    long long ret1 = 0 , ret2 = 0 ;
+    if(amount-arr[index]>=0) ret1 = solve(index,amount-arr[index]); // Take the coin
+    ret2 = solve(index-1,amount); // Not take the coin
+    return dp[index][amount]=ret1+ret2;
+}
+int main()
+{
+    int N,M;
+    scanf("%d%d",&N,&M); // N is the number of coins and M is the target value to make
+    for(int i=1;i<=N;i++) scanf("%d",&arr[i]);
+    memo(dp,-1);
+    printf("%lld\n",solve(N,M));
+    return 0;
+}
+/*
+5 10000
+1 5 10 25 50
+*/
+/*
+6794128501
+*/
