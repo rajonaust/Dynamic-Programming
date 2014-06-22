@@ -1,0 +1,38 @@
+// Coin Change Dynamic Problem
+// Tabulation technique
+// How many ways to make M using N coins for unlimited times
+// Time Complexity O(N*M)
+#include <cstdio>
+#include <cstring>
+using namespace std;
+#define memo(a,b) memset(a,b,sizeof(a))
+int arr[100+10];
+long long solve(int N,int M)
+{
+    long long dp[10000+10];
+    memo(dp,0);
+    dp[0]=1;
+    for(int i=1;i<=N;i++)
+    {
+        for(int j=arr[i];j<=M;j++)
+        {
+            dp[j]=dp[j]+dp[j-arr[i]];
+        }
+    }
+    return dp[M];
+}
+int main()
+{
+    int N,M;
+    scanf("%d%d",&N,&M); // N is the number of coins and M is the target value to make
+    for(int i=1;i<=N;i++) scanf("%d",&arr[i]);
+    printf("%lld\n",solve(N,M));
+    return 0;
+}
+/*
+5 10000
+1 5 10 25 50
+*/
+/*
+6794128501
+*/
