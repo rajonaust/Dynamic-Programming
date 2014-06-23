@@ -1,0 +1,48 @@
+// Palimdrome Partition Dynamic Problem
+// Make a string palindrome by adding or removing minimum number of characters
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+using namespace std;
+#define memo(a,b) memset(a,b,sizeof(a))
+char arr[1000+10];
+int dp[1000+10][1000+10];
+int solve(int low,int high)
+{
+    if(low>high) return 0;
+    int &ret = dp[low][high];
+    if(ret!=-1) return ret;
+    if(arr[low]==arr[high]) return ret = solve(low+1,high-1);
+    else return ret = 1+min(solve(low+1,high),solve(low,high-1));
+}
+void printSolution(int low,int high)
+{
+    if(low>high) return;
+    if(arr[low]==arr[high])
+    {
+        printf("%c",arr[low]);
+        printSolution(low+1,high-1);
+        if(low!=high) printf("%c",arr[high]);
+    }
+    else if(solve(low,high)==1+solve(low+1,high))
+    {
+        printf("%c",arr[low]);
+        printSolution(low+1,high);
+        printf("%c",arr[low]);
+    }
+    else if(solve(low,high)==1+solve(low,high-1))
+    {
+        printf("%c",arr[high]);
+        printSolution(low,high-1);
+        printf("%c",arr[high]);
+    }
+}
+int main()
+{
+    scanf("%s",&arr);
+    memo(dp,-1);
+    printf("%d\n",solve(0,strlen(arr)-1)); // Minimum numbers of characters required to add or remove
+    printSolution(0,strlen(arr)-1); // Print the palindrome string after partition
+    puts("");
+    return 0;
+}
