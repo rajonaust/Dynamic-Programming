@@ -1,4 +1,4 @@
-// Palimdrome Partition Dynamic Problem
+// Palimdrome Partitioning Dynamic Problem
 // Make a string palindrome by adding or removing minimum number of characters
 #include <iostream>
 #include <cstdio>
