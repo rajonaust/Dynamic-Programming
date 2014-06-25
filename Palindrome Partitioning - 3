@@ -1,0 +1,25 @@
+// How many palindrome possible in a string
+// Dynamic Problem
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+using namespace std;
+#define memo(a,b) memset(a,b,sizeof(a))
+char arr[70];
+long long dp[70][70];
+long long solve(int low,int high)
+{
+    long long &ret = dp[low][high];
+    if(ret!=-1) return ret;
+    if(low>high) return ret = 0;
+    if(low==high) return ret = 1;
+    if(arr[low]==arr[high])  return ret = 1 + solve(low+1,high) + solve(low,high-1);
+    else return ret = solve(low+1,high) + solve(low,high-1) - solve(low+1,high-1) ;
+}
+int main()
+{
+    scanf("%s",&arr);
+    memo(dp,-1);
+    cout<<solve(0,strlen(arr)-1)<<endl;
+    return 0;
+}
