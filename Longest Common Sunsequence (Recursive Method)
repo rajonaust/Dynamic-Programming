@@ -1,0 +1,26 @@
+// Longest Common Subsequence Dynamic Problem
+// Given two string . Find the longest common subsequence between them .
+// Recursive Method
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+using namespace std;
+#define mx 2000
+#define memo(a,b) memset(a,b,sizeof(a))
+char A[mx+10],B[mx+10];
+int dp[mx+10][mx+10];
+int solve(int m,int n)
+{
+    if(m==0||n==0) return 0;
+    int &ret = dp[m][n];
+    if(ret!=-1) return ret;
+    if(A[m-1]==B[n-1]) return ret = 1+solve(m-1,n-1);
+    else return ret = max(solve(m-1,n),solve(m,n-1));
+}
+int main()
+{
+    scanf("%s%s",&A,&B);
+    memo(dp,-1);
+    printf("%d\n",solve(strlen(A),strlen(B)));
+    return 0;
+}
