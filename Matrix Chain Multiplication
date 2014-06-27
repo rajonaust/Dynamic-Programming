@@ -1,0 +1,34 @@
+// Matrix Chain Multiplication Dynamic Problem
+// Time Complexity O(N^3)
+// Space Complexity O(N^2)
+#include <cstdio>
+#include <cstring>
+#include <iostream>
+using namespace std;
+#define mx 100
+#define memo(a,b) memset(a,b,sizeof(a))
+int row[mx],col[mx],dp[mx][mx];
+int solve(int beg,int end)
+{
+    if(beg>=end) return 0;
+    int &ret = dp[beg][end];
+    if(ret!=-1) return ret;
+    ret = 1<<30;
+    for(int mid=beg;mid<end;mid++) // Divide the whole part in two parts
+    {
+        int left = solve(beg,mid);
+        int right = solve(mid+1,end);
+        int multiply_left_right = row[beg]*col[mid]*col[end];
+        ret = min(ret,left+right+multiply_left_right);
+    }
+    return ret;
+}
+int main()
+{
+    int N; // Number of matrixes
+    scanf("%d",&N);
+    for(int i=1;i<=N;i++) scanf("%d%d",&row[i],&col[i]);
+    memo(dp,-1);
+    printf("%d\n",solve(1,N));
+    return 0;
+}
