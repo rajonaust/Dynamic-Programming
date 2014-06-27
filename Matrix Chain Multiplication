@@ -48,7 +48,7 @@ string printSolution(int beg,int end)
             x=x+',';
             ans=ans+x+y+')';
             if(beg==1&&end==N) cout<<ans<<endl;
-            else break; // If don't need to print all solution than just write break . No need else condition .
+            else break; // If don't need to print few solutions than just write break . No need else condition .
         }
     }
     return ans;
