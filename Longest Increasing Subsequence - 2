@@ -1,5 +1,6 @@
 // Longest Increasing Subsequence
 // Dynamic Problem
+// Using Binary Search
 // Time Complexity O(NlogK)
 // N -> Number of elements K -> Maximum increasing subsequence length
 #include <cstdio>
@@ -16,6 +17,7 @@ int solve(int N)
     int lislength=0;
     for(int i=1;i<=N;i++)
     {
+	//Binary Search
         int low = 0 , high = lislength ;
         while(low<=high)
         {
