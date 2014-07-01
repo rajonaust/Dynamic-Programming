@@ -1,0 +1,38 @@
+// Rod Cutting Dynamic Problem
+// Recursive Method
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+using namespace std;
+#define memo(a,b) memset(a,b,sizeof(a))
+#define mx 10000
+int price[mx],dp[mx];
+int solve(int length,int N)
+{
+    if(length == 0) return 0;
+    int &ret = dp[length];
+    if(ret!=-1) return ret;
+    ret = 0 ;
+    for(int i=1;i<=N;i++)
+    {
+        if(length-i>=0) ret = max(ret,price[i]+solve(length-i,N));
+        else break;
+    }
+    return ret ;
+}
+int main()
+{
+    int N; // N is the total length of a rod
+    scanf("%d",&N);
+    for(int i=1;i<=N;i++) scanf("%d",&price[i]);
+    memo(dp,-1);
+    printf("%d\n",solve(N,N));
+    return 0;
+}
+/*
+8
+1 5 8 9 10 17 17 20
+*/
+/*
+22
+*/
