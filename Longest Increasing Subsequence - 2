@@ -17,7 +17,7 @@ int solve(int N)
     int lislength=0;
     for(int i=1;i<=N;i++)
     {
-	//Binary Search
+        //Binary Search
         int low = 0 , high = lislength ;
         while(low<=high)
         {
