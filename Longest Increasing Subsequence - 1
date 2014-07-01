@@ -42,8 +42,9 @@ int main()
     int N; // N is the number of elements
     scanf("%d",&N);
     for(int i=1;i<=N;i++) scanf("%d",&seq[i]);
-    printf("%d\n",solve(N));
-    printSolution(N,solve(N));
+    int ans = solve(N);
+    printf("%d\n",ans);
+    printSolution(N,ans);
     return 0;
 }
 /*
