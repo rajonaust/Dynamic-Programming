@@ -1,0 +1,33 @@
+// Subset Sum Dynamic Problem
+// Tabulation Mathod
+// N is the size of array and sum is the target to make by summing all or few elements of the array
+// Time Complexity O(sum*N)
+#include <cstdio>
+#include <cstring>
+using namespace std;
+#define memo(a,b) memset(a,b,sizeof(a))
+#define mx 10000
+int arr[mx+10];
+bool solve(int N,int sum)
+{
+    bool dp[sum+1][N+1];
+    for(int i=0;i<=N;i++) dp[0][i]=true;
+    for(int i=1;i<=sum;i++) dp[i][0]=false;
+    for(int i=1;i<=sum;i++)
+    {
+        for(int j=1;j<=N;j++)
+        {
+            dp[i][j]=dp[i][j-1];
+            if(i>=arr[j-1]) dp[i][j]=dp[i][j]||dp[i-arr[j-1]][j-1];
+        }
+    }
+    return dp[sum][N];
+}
+int main()
+{
+    int N , sum ;
+    scanf("%d%d",&N,&sum);
+    for(int i=0;i<N;i++) scanf("%d",&arr[i]);
+    if(solve(N,sum)) puts("YES");else puts("NO");
+    return 0;
+}
