@@ -1,0 +1,63 @@
+// Floyd Warshall
+// Dynamic Programming
+// Time Complexity O(N^3)
+// Space Complexity O(N^2)
+// N -> Number of nodes
+#include <iostream>
+#include <cstdio>
+#include <vector>
+using namespace std;
+int matrix[50][50];
+int next [50][50];
+void Floyd_Warshall(int N)
+{
+    for(int k=1;k<=N;k++) // k must be before i and j loops .
+    {
+        for(int i=1;i<=N;i++)
+        {
+            for(int j=1;j<=N;j++)
+            {
+                if(matrix[i][k]+matrix[k][j]<matrix[i][j])
+                {
+                    matrix[i][j]=matrix[i][k]+matrix[k][j];
+                    next[i][j] = next[i][k];
+                }
+            }
+        }
+    }
+}
+void find_path(int i,int j)
+{
+    if(matrix[i][j]==1000000000)
+    {
+        puts("No Path!");
+        return;
+    }
+    vector <int> path;
+    path.push_back(i);
+    while(i!=j)
+    {
+        i=next[i][j];
+        path.push_back(i);
+    }
+    for(int i=0;i<path.size();i++) printf("%d ",path[i]);
+    puts("");
+}
+int main()
+{
+    int N;
+    scanf("%d",&N); // Number of nodes
+    for(int i=1;i<=N;i++)
+    {
+        for(int j=1;j<=N;j++)
+        {
+            scanf("%d",&matrix[i][j]); // Cost of node i to node j . 1000000000 indicates no path exist between i and j .
+            next[i][j]=j;
+        }
+    }
+    Floyd_Warshall(N);
+    int source , destination ; // Find the way from node source to node destination
+    scanf("%d%d",&source,&destination);
+    find_path(source,destination);
+    return 0;
+}
