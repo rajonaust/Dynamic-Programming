@@ -20,7 +20,6 @@ void Floyd_Warshall(int N)
 }
 int main()
 {
-    freopen("input.txt","r",stdin);
     int N;
     scanf("%d",&N); // Number of nodes
     for(int i=1;i<=N;i++)
