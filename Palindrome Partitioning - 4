@@ -1,0 +1,39 @@
+// Palimdrome Partitioning Dynamic Problem
+//  Minimum possible number of substrings is palindrome partition of a string .
+// Example : string - ABAKPOP . Partition - {ABA} {K} {POP} . So the answer is 3 .
+// Example : string - ABCBA . Partition - {ABCBA} . So the answer is 1 .
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+using namespace std;
+char arr[5000];
+int dp[1000+10];
+int high;
+bool palin(int i,int j)
+{
+    while(i<=j)
+    {
+        if(arr[i]!=arr[j]) return false;
+        i++;j--;
+    }
+    return true;
+}
+int solve(int low)
+{
+    if(dp[low]!=-1) return dp[low];
+    if(palin(low,high)) return dp[low]=1;
+    dp[low]=high-low+1;
+    for(int i=low;i<=high;i++)
+    {
+        if(palin(low,i)) dp[low]=min(dp[low],1+solve(i+1));
+    }
+    return dp[low];
+}
+int main()
+{
+    scanf("%s",&arr);
+    memset(dp,-1,sizeof(dp));
+    high = strlen(arr)-1;
+    printf("%d\n",solve(0));
+    return 0;
+}
