@@ -1,5 +1,6 @@
 // Maximum sum rectangle in a 2D matrix .
 // Given a N*N matrix , and find the maximum sum rectangle and their top-left and final-bottom position .
+// Time Complexity O(N^3) 
 #include <stdio.h>
 #include <algorithm>
 #include <limits.h>
