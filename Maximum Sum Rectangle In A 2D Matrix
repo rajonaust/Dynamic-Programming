@@ -1,6 +1,8 @@
 // Maximum sum rectangle in a 2D matrix .
 // Given a N*N matrix , and find the maximum sum rectangle and their top-left and final-bottom position .
-#include <bits/stdc++.h>
+#include <stdio.h>
+#include <algorithm>
+#include <limits.h>
 using namespace std;
 int matrix[100+10][100+10] , temp[100+10] , top , bottom ;
 int kadane(int N)
