@@ -1,0 +1,26 @@
+// Maximum product of consecutive integers .
+// Given N integers . Find maximum product of taking consecutive integers .
+// Time Complexity O(N^2)
+import java.math.BigInteger ;
+import java.util.Scanner ;
+class Main
+{
+	public static void main(String args[])
+	{
+		Scanner sc = new Scanner (System.in) ;
+		BigInteger[] arr = new BigInteger[100+10] ;
+		int N = sc.nextInt() , i , j ;
+		for(i=0;i<N;i++) arr[i] = sc.nextBigInteger();
+		BigInteger ans = new BigInteger("-1111111");
+		for(i=0;i<N;i++)
+		{
+			BigInteger temp = new BigInteger("1");
+			for(j=i;j<N;j++)
+			{
+				temp = temp.multiply(arr[j]);
+				if(ans.compareTo(temp)==-1) ans = temp ;
+			}
+		}
+		System.out.println(ans);
+	}
+}
