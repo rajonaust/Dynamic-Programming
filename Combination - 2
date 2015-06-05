@@ -1,5 +1,5 @@
 // Calculate nCr
-// Pascal Triangle Method
+// Pascal's Triangle Method
 #include <cstdio>
 #include <iostream>
 using namespace std;
