@@ -1,0 +1,67 @@
+// Calculate nCr
+// Pascal Triangle Method
+#include <cstdio>
+#include <iostream>
+using namespace std;
+#define mx 30
+long long dp[mx+10][mx+10] ;
+void nCr()
+{
+    for(int i=0;i<=mx;i++)
+    {
+        for(int j=0;j<=i;j++)
+        {
+            if(j==0||j==i) dp[i][j] = 1 ;
+            else dp[i][j] = dp[i-1][j-1] + dp[i-1][j] ;
+        }
+    }
+}
+int main()
+{
+    nCr();
+    int n , r ; // Calculate nCr ( n>=r )
+    scanf("%d%d",&n,&r);
+    printf("%lld\n",dp[n][r]);
+    return 0;
+}
+/*
+10 3
+*/
+/*
+120
+*/
+/*
+1 1
+*/
+/*
+1*/
+/*
+9 5
+*/
+/*
+126
+*/
+/*
+3 2
+*/
+/*
+3
+*/
+/*
+4 2
+*/
+/*
+6
+*/
+/*
+5 3
+*/
+/*
+10
+*/
+/*
+5 2
+*/
+/*
+10
+*/
