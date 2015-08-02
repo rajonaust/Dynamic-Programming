@@ -1,0 +1,51 @@
+// Distinct Subsequences
+// Dynamic Programming
+
+#include <bits/stdc++.h>
+using namespace std;
+
+char arr[100000+10];
+long long dp[100000+10] , last[200] , mod = 1000000007 ;
+
+long long solve()
+{
+    int n = strlen(arr+1);
+    dp[0] = 1 ;
+
+    for(int i=1;i<=n;i++)
+    {
+        dp[i] = ( 2*dp[i-1] - dp[last[arr[i]]-1] + mod ) %mod ; ;
+        last[arr[i]]=i;
+    }
+
+    return dp[n] ;
+}
+
+int main()
+{
+    fill(last,last+200,0);
+    scanf("%s",arr+1);
+    cout << solve() << endl ;
+    return 0;
+}
+
+/*
+CODECRAFT
+*/
+/*
+496
+*/
+
+/*
+ABCDEFGH
+*/
+/*
+256
+*/
+
+/*
+AAA
+*/
+/*
+4
+*/
